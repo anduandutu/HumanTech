@@ -6,8 +6,10 @@ import { connect } from "react-redux";
 import { Route } from "react-router";
 import LoginPage from "./src/views/LoginView/LoginPage";
 import MainEduPage from "./src/views/MainEduPageView/MainEduView";
+import { FocusStyleManager } from "@blueprintjs/core";
 
 const App = (loggedIn: any) => {
+  FocusStyleManager.onlyShowFocusOnTabs();
   return (
     <div className="app">
       {loggedIn ? (
