@@ -2,36 +2,22 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import UserService from "./src/requestMaker/UserService";
-export default function App() {
-  const [currUsers, setCurrentUsers] = useState([]);
+import { connect } from "react-redux";
+import { Route } from "react-router";
+import LoginPage from "./src/views/LoginView/LoginPage";
+import MainEduPage from "./src/views/MainEduPageView/MainEduView";
 
-  useEffect(() => {}, []);
-
-  const showNoUsers = () => {
-    UserService.getUserList()
-      .then((resp: any) => {
-        console.log(resp.data);
-        setCurrentUsers(resp.data);
-      })
-      .catch((err: any) => {
-        console.log(err.data);
-      });
-  };
-
+const App = (loggedIn: any) => {
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={showNoUsers}
-        title="Learn More"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <p>{currUsers.length}</p>
-      <StatusBar style="auto" />
-    </View>
+    <div className="app">
+      {loggedIn ? (
+        <Route path="/" element={<MainEduPage></MainEduPage>}></Route>
+      ) : (
+        <Route path="*" element={<LoginPage></LoginPage>}></Route>
+      )}
+    </div>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -41,3 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const mapStateToProps = ({ userReducer: { loggedIn } }) => ({ loggedIn });
+
+export default connect(mapStateToProps)(App);
