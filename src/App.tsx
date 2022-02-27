@@ -7,7 +7,7 @@ import LoginPage from "./views/LoginView/LoginPage";
 import MainEduPage from "./views/MainEduPageView/MainEduView";
 import { FocusStyleManager } from "@blueprintjs/core";
 
-const App = (loggedIn: any) => {
+const App = (loggedIn: boolean) => {
   FocusStyleManager.onlyShowFocusOnTabs();
   return (
     <div className="app">
@@ -22,15 +22,8 @@ const App = (loggedIn: any) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+const mapStateToProps = (userReducer: any) => ({
+  loggedIn: userReducer.loggedIn,
 });
-
-const mapStateToProps = ({ userReducer: { loggedIn } }) => ({ loggedIn });
 
 export default connect(mapStateToProps)(App);
