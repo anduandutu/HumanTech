@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "core-js";
 import { BrowserRouter as Router } from "react-router-dom";
-import { store } from "./src/constants/Store";
+import { store } from "./constants/Store";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/table/lib/css/table.css";
 import "normalize.css";

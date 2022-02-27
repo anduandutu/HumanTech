@@ -111,7 +111,7 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <div className="videoContainer">
           <video
             className="bgVid"
